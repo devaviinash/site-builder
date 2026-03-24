@@ -19,10 +19,6 @@ export const makeRevision = async (req: Request, res: Response) => {
             return res.status(401).json({ message: 'Unauthorized' });
         }
 
-        if(user.credits < 5){
-            return res.status(403).json({ message: 'add more credits to make changes' });
-        }
-
         if(!message || message.trim() === ''){
             return res.status(400).json({ message: 'Please enter a valid prompt' });
         }
@@ -42,11 +38,6 @@ export const makeRevision = async (req: Request, res: Response) => {
                 content: message,
                 projectId
             }
-        })
-
-        await prisma.user.update({
-            where: {id: userId},
-            data: {credits: {decrement: 5}}
         })
 
         // Enhance user prompt
@@ -127,10 +118,6 @@ export const makeRevision = async (req: Request, res: Response) => {
                 projectId
             }
         })
-        await prisma.user.update({
-            where: {id: userId},
-            data: {credits: {increment: 5}}
-        })
         return;
         }
 
@@ -165,10 +152,6 @@ export const makeRevision = async (req: Request, res: Response) => {
 
         res.json({message: 'Changes made successfully'})
     } catch (error : any) {
-        await prisma.user.update({
-            where: {id: userId},
-            data: {credits: {increment: 5}}
-        })
         console.log(error.code || error.message);
         res.status(500).json({ message: error.message });
     }

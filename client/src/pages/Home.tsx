@@ -35,22 +35,14 @@ const Home = () => {
 
   return (
   
-      <section className="flex flex-col items-center text-white text-sm pb-20 px-4 font-poppins">
-
-        <a href="https://prebuiltui.com" className="flex items-center gap-2 border border-slate-700 rounded-full p-1 pr-3 text-sm mt-20">
-          <span className="bg-indigo-600 text-xs px-3 py-1 rounded-full">NEW</span>
-          <p className="flex items-center gap-2">
-            <span>Try 30 days free trial option</span>
-            <svg className="mt-px" width="6" height="9" viewBox="0 0 6 9" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="m1 1 4 3.5L1 8" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>
-          </p>
-        </a>
+      <section className="flex flex-col items-center justify-center text-white text-sm px-4 font-poppins min-h-[calc(100svh-64px)]">
 
         <h1 className="text-center text-[40px] leading-[48px] md:text-6xl md:leading-[70px] mt-4 font-semibold max-w-3xl">
           Turn thoughts into websites instantly, with AI.
         </h1>
 
         <p className="text-center text-base max-w-md mt-2">
-          Create, customize and publish website faster than ever with our AI Site Builder.
+          Create, customize and publish website faster than ever with our AI Website Builder.
         </p>
 
         <form onSubmit={onSubmitHandler} className="bg-white/10 max-w-2xl w-full rounded-xl p-4 mt-10 border border-indigo-600/70 focus-within:ring-2 ring-indigo-500 transition-all">

@@ -1,7 +1,6 @@
 
 import { Route, Routes, useLocation } from 'react-router-dom'
 import Home from './pages/Home'
-import Pricing from './pages/Pricing'
 import Projects from './pages/Projects'
 import MyProjects from './pages/MyProjects'
 import Preview from './pages/Preview'
@@ -28,7 +27,6 @@ const App = () => {
       
       <Routes>
         <Route path='/' element={<Home />} />
-        <Route path='/pricing' element={<Pricing />} />
         <Route path='/projects/:projectId' element={<Projects />} />
         <Route path='/projects' element={<MyProjects />} />
         <Route path='/preview/:projectId' element={<Preview />} />

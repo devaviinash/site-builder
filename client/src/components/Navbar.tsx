@@ -1,46 +1,27 @@
-import React, { useEffect, useState } from 'react'
-import { assets } from '../assets/assets';
+import React from 'react'
 import { Link, useNavigate } from 'react-router-dom';
 import { authClient } from '@/lib/auth-client';
 import {UserButton} from '@daveyplate/better-auth-ui'
-import api from '@/configs/axios';
-import { toast } from 'sonner';
 
 const Navbar = () => {
     const [menuOpen, setMenuOpen] = React.useState(false);
     const navigate = useNavigate()
-    const [credits, setCredits] = useState(0)
-
     const {data: session} = authClient.useSession()
 
-    const getCredits = async () => {
-      try {
-        const {data} = await api.get('/api/user/credits');
-        setCredits(data.credits)
-      } catch (error: any) {
-        toast.error(error?.response?.data?.message || error.message)
-        console.log(error);
-      }
-    }
-
-    useEffect(()=>{
-      if(session?.user){
-        getCredits()
-      }
-    },[session?.user])
 
   return (
     <>
       <nav className="z-50 flex items-center justify-between w-full py-4 px-4 md:px-16 lg:px-24 xl:px-32 backdrop-blur border-b text-white border-slate-800">
-        <Link to='/'>
-              <img src={assets.logo} alt="logo" className='h-5 sm:h-7'/>
-          </Link>
+        <Link to='/' className="flex items-center gap-1.5 select-none">
+          <span className="text-base sm:text-xl font-semibold tracking-wide bg-gradient-to-r from-white via-indigo-200 to-indigo-400 bg-clip-text text-transparent">
+            AI Website Builder
+          </span>
+        </Link>
 
           <div className="hidden md:flex items-center gap-8 transition duration-500">
             <Link to='/'>Home</Link>
             <Link to='/projects'>My Projects</Link>
             <Link to='/community'>Community</Link>
-            <Link to='/pricing'>Pricing</Link>
             
           </div>
 
@@ -51,9 +32,6 @@ const Navbar = () => {
             </button>
           ) : (
             <>
-            <button className='bg-white/10 px-5 py-1.5 text-xs sm:text-sm border text-gray-200 rounded-full'>
-            Credits : <span className='text-indigo-300'>{credits}</span>
-            </button>
             <UserButton size='icon'/>
             </>
             
@@ -73,7 +51,6 @@ const Navbar = () => {
             <Link to='/' onClick={() => setMenuOpen(false)}>Home</Link>
             <Link to='/projects' onClick={() => setMenuOpen(false)}>My Projects</Link>
             <Link to='/community' onClick={() => setMenuOpen(false)}>Community</Link>
-            <Link to='/pricing' onClick={() => setMenuOpen(false)}>Pricing</Link>
             
             
             <button className="active:ring-3 active:ring-white aspect-square size-10 p-1 items-center justify-center bg-slate-100 hover:bg-slate-200 transition text-black rounded-md flex" onClick={() => setMenuOpen(false)} >
